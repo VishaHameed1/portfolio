@@ -381,7 +381,8 @@ const PROJECTS_DATA = [
     linkedin: "https://www.linkedin.com/posts/visha-hameed-a23202373_projectshowcase-webengineering-ai-activity-7464839870000222208-TWUa"
   },
 
-  // ===== MOBILE DEVELOPMENT =====
+  // ===== MOBILE DEVELOPMENT (Android - Java/Kotlin) =====
+  // Existing Mobile Projects
   { 
     name: "Smart-Recipe-Assistant", 
     details: "Java, Gemini AI, TTS/STT - Android app with hands-free voice mode", 
@@ -399,6 +400,62 @@ const PROJECTS_DATA = [
     category: "Mobile Development", 
     repo: "ExpenseTrackerApp",
     linkedin: "https://www.linkedin.com/posts/visha-hameed-a23202373_aiml-machinelearning-artificialintelligence-activity-7471150573564817408-Fum5"
+  },
+
+  // NEW Android Projects (Dice Roller & Grid Apps)
+  { 
+    name: "Custom-Dice-Grid-Application", 
+    details: "Android - Advanced custom GridView with parent grid framework and individual component row layouts", 
+    primaryLanguage: "Java", 
+    updated: "Updated 10 minutes ago", 
+    category: "Mobile Development", 
+    repo: "Custom-Dice-Grid-Application",
+    linkedin: null
+  },
+  { 
+    name: "loginpage", 
+    details: "Android - Clean user authentication interface with structured validation and navigation routing", 
+    primaryLanguage: "Java", 
+    updated: "Updated 17 minutes ago", 
+    category: "Mobile Development", 
+    repo: "loginpage",
+    linkedin: null
+  },
+  { 
+    name: "WebView", 
+    details: "Android - Web content integration using native WebView with multi-activity navigation using ConstraintLayout", 
+    primaryLanguage: "Java", 
+    updated: "Updated 22 minutes ago", 
+    category: "Mobile Development", 
+    repo: "WebView",
+    linkedin: null
+  },
+  { 
+    name: "GridView", 
+    details: "Android - Data presentation inside a clean grid layout framework with adaptive grid structure", 
+    primaryLanguage: "Java", 
+    updated: "Updated 25 minutes ago", 
+    category: "Mobile Development", 
+    repo: "GridView",
+    linkedin: null
+  },
+  { 
+    name: "DICE_ROLLER", 
+    details: "Android - Fully responsive dice rolling simulation using ConstraintLayout with responsive UI design", 
+    primaryLanguage: "Java", 
+    updated: "Updated 37 minutes ago", 
+    category: "Mobile Development", 
+    repo: "DICE_ROLLER",
+    linkedin: null
+  },
+  { 
+    name: "DICE_APP", 
+    details: "Android - Simple interactive dice rolling app with random face generation on tap", 
+    primaryLanguage: "Java", 
+    updated: "Updated 40 minutes ago", 
+    category: "Mobile Development", 
+    repo: "DICE_APP",
+    linkedin: null
   },
 
   // ===== INTERNSHIPS (HexSoftware & DevelopersHub) =====
@@ -516,6 +573,47 @@ const PROJECTS_DATA = [
 
 // ===== MAIN APPLICATION =====
 document.addEventListener('DOMContentLoaded', function() {
+
+  // ===== MOBILE HAMBURGER MENU TOGGLE =====
+  const hamburgerMenu = document.getElementById('hamburgerMenu');
+  const navLinks = document.getElementById('navLinks');
+
+  if (hamburgerMenu && navLinks) {
+    hamburgerMenu.addEventListener('click', function(e) {
+      e.stopPropagation();
+      navLinks.classList.toggle('open');
+      
+      const icon = this.querySelector('i');
+      if (icon) {
+        icon.classList.toggle('fa-bars');
+        icon.classList.toggle('fa-times');
+      }
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        const icon = hamburgerMenu.querySelector('i');
+        if (icon) {
+          icon.classList.remove('fa-times');
+          icon.classList.add('fa-bars');
+        }
+      });
+    });
+
+    document.addEventListener('click', function(e) {
+      if (window.innerWidth <= 768) {
+        if (!navLinks.contains(e.target) && !hamburgerMenu.contains(e.target)) {
+          navLinks.classList.remove('open');
+          const icon = hamburgerMenu.querySelector('i');
+          if (icon) {
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+          }
+        }
+      }
+    });
+  }
 
   // --- Dark Mode Toggle ---
   const themeToggleButton = document.querySelector('.theme-toggle-button');
@@ -689,9 +787,27 @@ document.addEventListener('DOMContentLoaded', function() {
       button.classList.add('category-button');
       if (category === 'All') button.classList.add('active');
 
-      // Add internship icon to button
+      // Add icons to specific categories
       if (category === 'Internships') {
         button.innerHTML = '<i class="fas fa-briefcase"></i> Internships';
+      }
+      if (category === 'Mobile Development') {
+        button.innerHTML = '<i class="fas fa-mobile-alt"></i> Mobile Development';
+      }
+      if (category === 'AI/ML') {
+        button.innerHTML = '<i class="fas fa-brain"></i> AI/ML';
+      }
+      if (category === 'Web Development') {
+        button.innerHTML = '<i class="fas fa-globe"></i> Web Development';
+      }
+      if (category === 'Cybersecurity') {
+        button.innerHTML = '<i class="fas fa-shield-alt"></i> Cybersecurity';
+      }
+      if (category === '.NET/C#') {
+        button.innerHTML = '<i class="fas fa-code"></i> .NET/C#';
+      }
+      if (category === 'PHP') {
+        button.innerHTML = '<i class="fab fa-php"></i> PHP';
       }
 
       button.addEventListener('click', () => {
@@ -717,5 +833,9 @@ document.addEventListener('DOMContentLoaded', function() {
   console.log(`🎓 Internship projects: ${internshipProjects.length}`);
   console.log(`   - HexSoftware: ${internshipProjects.filter(p => p.name.includes('HexSoftware') || p.name.includes('hexsoftware')).length}`);
   console.log(`   - DevelopersHub: ${internshipProjects.filter(p => p.name.includes('AI-ML-Internship-Tasks')).length}`);
+  
+  // --- Mobile Development Stats ---
+  const mobileProjects = PROJECTS_DATA.filter(p => p.category === 'Mobile Development');
+  console.log(`📱 Mobile Development projects: ${mobileProjects.length}`);
   
 });
