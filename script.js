@@ -677,13 +677,10 @@ document.addEventListener('DOMContentLoaded', function() {
       if (!response.ok) throw new Error('GitHub API request failed');
       const data = await response.json();
 
-      document.getElementById('github-followers').textContent = data.followers || 0;
-      document.getElementById('github-repos').textContent = data.public_repos || 0;
-
+      
       const reposResponse = await fetch(`https://api.github.com/users/${username}/repos?per_page=100`);
       const repos = await reposResponse.json();
       const totalStars = repos.reduce((acc, repo) => acc + repo.stargazers_count, 0);
-      document.getElementById('github-stars').textContent = totalStars;
 
     } catch (error) {
       console.error('Error fetching GitHub stats:', error);
