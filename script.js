@@ -2,6 +2,51 @@
 const PROJECTS_DATA = [
   // ===== AI & MACHINE LEARNING =====
   { 
+    name: "Federated-Cognitive-Multi-Agent-GraphRAG-System", 
+    details: "Elite-tier cognitive architecture implementing Federated Knowledge Retrieval across Decentralized Graph Networks", 
+    primaryLanguage: "Python", 
+    updated: "Updated 1 minute ago", 
+    category: "AI/ML", 
+    repo: "Federated-Cognitive-Multi-Agent-GraphRAG-System",
+    linkedin: null
+  },
+  { 
+    name: "GRAPHRAG", 
+    details: "Research-level, production-grade Graph-Augmented Retrieval-Augmented Generation (GraphRAG) system for hybrid search patterns", 
+    primaryLanguage: "Python", 
+    updated: "Updated 12 minutes ago", 
+    category: "AI/ML", 
+    repo: "GRAPHRAG",
+    linkedin: null
+  },
+  { 
+    name: "Agentic_rag", 
+    details: "Production-grade RAG architecture with Self-Reflection & Multi-Agent Verification Loops", 
+    primaryLanguage: "Python", 
+    updated: "Updated 23 minutes ago", 
+    category: "AI/ML", 
+    repo: "Agentic_rag",
+    linkedin: null
+  },
+  { 
+    name: "SmartUniversity_RAG", 
+    details: "Enterprise-ready local RAG architecture using Python, Streamlit, ChromaDB, and Ollama for institutional search", 
+    primaryLanguage: "Python", 
+    updated: "Updated 33 minutes ago", 
+    category: "AI/ML", 
+    repo: "SmartUniversity_RAG",
+    linkedin: null
+  },
+  { 
+    name: "POCKETBRAIN_RAG", 
+    details: "100% free, fully local Retrieval-Augmented Generation (RAG) system built with Python, Streamlit, ChromaDB, and Ollama", 
+    primaryLanguage: "Python", 
+    updated: "Updated 3 hours ago", 
+    category: "AI/ML", 
+    repo: "POCKETBRAIN_RAG",
+    linkedin: null
+  },
+  { 
     name: "AI-Smart-Quiz-Learning-Systems", 
     details: "MERN + Google Gemini AI - Intelligent adaptive quiz platform", 
     primaryLanguage: "JavaScript", 
@@ -382,7 +427,6 @@ const PROJECTS_DATA = [
   },
 
   // ===== MOBILE DEVELOPMENT (Android - Java/Kotlin) =====
-  // Existing Mobile Projects
   { 
     name: "Smart-Recipe-Assistant", 
     details: "Java, Gemini AI, TTS/STT - Android app with hands-free voice mode", 
@@ -401,8 +445,6 @@ const PROJECTS_DATA = [
     repo: "ExpenseTrackerApp",
     linkedin: "https://www.linkedin.com/posts/visha-hameed-a23202373_aiml-machinelearning-artificialintelligence-activity-7471150573564817408-Fum5"
   },
-
-  // NEW Android Projects (Dice Roller & Grid Apps)
   { 
     name: "Custom-Dice-Grid-Application", 
     details: "Android - Advanced custom GridView with parent grid framework and individual component row layouts", 
@@ -668,28 +710,6 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   });
-
-  // --- Fetch GitHub Stats ---
-  async function fetchGitHubStats() {
-    try {
-      const username = 'VishaHameed1';
-      const response = await fetch(`https://api.github.com/users/${username}`);
-      if (!response.ok) throw new Error('GitHub API request failed');
-      const data = await response.json();
-
-      
-      const reposResponse = await fetch(`https://api.github.com/users/${username}/repos?per_page=100`);
-      const repos = await reposResponse.json();
-      const totalStars = repos.reduce((acc, repo) => acc + repo.stargazers_count, 0);
-
-    } catch (error) {
-      console.error('Error fetching GitHub stats:', error);
-      document.querySelectorAll('.github-stat-item span').forEach(span => {
-        if (span.textContent === '0') span.textContent = '?';
-      });
-    }
-  }
-  fetchGitHubStats();
 
   // --- Weather Widget (Mock) ---
   function updateWeather() {
